@@ -53,7 +53,7 @@ export default function ShopSection() {
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-lg p-4 shadow-sm">
             <div className="relative">
-              <span className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+              <span className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm z-10"> {/* Added z-10 */}
                 {product.category}
               </span>
               <div className="relative aspect-square mb-4">
