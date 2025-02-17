@@ -35,12 +35,12 @@ export default function Live2DViewer() {
       try {
         console.log('Initializing Live2D...')
 
-        // Initialize Homura (Left side) with larger canvas
+        // init homura
         const homuraApp = new PIXI.Application({
           view: leftCanvasRef.current,
           autoStart: true,
-          width: 1200,  // Increased canvas width
-          height: 800,  // Increased canvas height
+          width: 1200,
+          height: 800,
           transparent: true,
           backgroundAlpha: 0
         })
@@ -50,19 +50,18 @@ export default function Live2DViewer() {
 
         homuraApp.stage.addChild(homuraModel)
 
-        // Moved Homura further left
         homuraModel.x = 50
         homuraModel.y = 400
         homuraModel.scale.set(0.35)
         homuraModel.interactive = true
         homuraModel.buttonMode = true
 
-        // Initialize Madoka (Right side) with larger canvas
+        // init madoka
         const madokaApp = new PIXI.Application({
           view: rightCanvasRef.current,
           autoStart: true,
-          width: 1200,  // Increased canvas width
-          height: 800,  // Increased canvas height
+          width: 1200,
+          height: 800,
           transparent: true,
           backgroundAlpha: 0
         })
@@ -78,7 +77,7 @@ export default function Live2DViewer() {
         madokaModel.interactive = true
         madokaModel.buttonMode = true
 
-        // Add dragging functionality with boundary checks
+        // dragging
         const setupDragging = (model: any, app: any) => {
           let isDragging = false
           let dragData: any = null
@@ -91,7 +90,6 @@ export default function Live2DViewer() {
           model.on('mousemove', (event: any) => {
             if (isDragging) {
               const newPosition = dragData.getLocalPosition(model.parent)
-              // Add boundary checks with wider margins
               model.x = Math.max(0, Math.min(newPosition.x, app.screen.width))
               model.y = Math.max(0, Math.min(newPosition.y, app.screen.height))
             }
@@ -136,7 +134,7 @@ export default function Live2DViewer() {
         style={{ 
           width: '1200px', 
           height: '800px', 
-          transform: 'translateX(-300px)' // Moved further left
+          transform: 'translateX(-300px)'
         }}
       />
       <canvas
@@ -145,7 +143,7 @@ export default function Live2DViewer() {
         style={{ 
           width: '1200px', 
           height: '800px', 
-          transform: 'translateX(-10px)'  // Adjusted right side position
+          transform: 'translateX(-10px)'
         }}
       />
     </div>
